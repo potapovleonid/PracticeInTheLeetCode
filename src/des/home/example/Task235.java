@@ -12,27 +12,22 @@ public class Task235 {
     }
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        TreeNode desiredNode = root;
         byte leftOrRight;
+        TreeNode head = root;
 
-        while (desiredNode != null) {
-            if (desiredNode.val == p.val || desiredNode.val == q.val) {
-                return desiredNode;
+        while (head != null) {
+            if ((head.val <= p.val && head.val >= q.val) || (head.val >= p.val && head.val <= q.val)){
+                return head;
             }
 
-//TODO
-            if (desiredNode.left.val == p.val || desiredNode.left.val == q.val || desiredNode.right.val == p.val || desiredNode.right.val == q.val) {
-                return desiredNode;
-            }
-
-            if (desiredNode.val > p.val && desiredNode.val > q.val) {
+            if (head.val > p.val && head.val > q.val) {
                 leftOrRight = 0;
             } else leftOrRight = 1;
 
             if (leftOrRight == 0) {
-                desiredNode = desiredNode.left;
+                head = head.left;
             } else {
-                desiredNode = desiredNode.right;
+                head = head.right;
             }
         }
         return null;
